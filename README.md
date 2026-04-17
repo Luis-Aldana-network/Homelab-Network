@@ -1,25 +1,26 @@
 Day 01 – Home Lab Initialization
-# 🛠️ Red de Laboratorio Doméstico - Valledupar
 
-Este repositorio documenta la configuración y el despliegue de mi HomeLab personal, centrado en la integración de servidores Linux con infraestructura MikroTik.
+# Red de Laboratorio Doméstico
 
-## 📡 Topología de Red
+Este repositorio documenta la configuración y el despliegue un homelab, centrado en la integración de servidores Linux con infraestructura MikroTik.
+
+## Topología de Red
 La red está segmentada para garantizar seguridad y orden en el tráfico de datos:
-- **Router (Gateway):** MikroTik (IP: `172.16.10.1`)
+- **Router (Gateway):** MikroTik (IP: `172.16.10.XX`)
 - **Servidor:** HP Laptop (Ubuntu 24.04 LTS)
 - **Segmento Servidores:** `172.16.10.0/24`
 
-## 📔 Bitácora de Configuración (Día 01)
+## Configuración (Día 01)
 
 ### Desafíos de Conectividad Resueltos:
-Durante el despliegue inicial, enfrentamos problemas de enrutamiento y resolución de nombres. Aquí los aprendizajes clave:
+Durante el despliegue inicial, se nefrentaron problemas de enrutamiento y resolución de nombres. Aquí los aprendizajes clave:
 
 1. **Gestión de Interfaces Dinámicas:**
-   Ubuntu identificaba la tarjeta de red como `enp8s0` y `eno1` de forma intermitente. Se estandarizó la configuración mediante **Netplan** usando el `dhcp-identifier: mac` para asegurar una identidad única ante el DHCP del MikroTik.
+   Ubuntu identificaba la tarjeta de red como `enp8s0` y `eno1` de forma intermitente. Se estandarizó la configuración mediante **Netplan** usando el "dhcp-identifier: mac" para asegurar una identidad única ante el DHCP del MikroTik.
 
 2. **Resolución de Conflictos ARP:**
    Se detectaron IPs duplicadas en la tabla ARP del router. 
-   - *Solución:* Limpieza manual de entradas en Winbox (`/ip arp remove`) y forzado de renovación de lease.
+   - *Solución:* Limpieza manual de entradas en Winbox (/ip arp remove) y tambien se forzo renovación de lease.
 
 3. **Configuración de DNS (YAML):**
    Aprendizaje sobre la sintaxis estricta de Netplan para listas de servidores DNS, evitando errores de indentación.
